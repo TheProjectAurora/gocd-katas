@@ -9,3 +9,4 @@ echo "INFO: Change elastic agents configuration GOCD_SERVER_ADDRESS=${GATEWAY}"
 sed -i "s|GOCD_SERVER_ADDRESS|${GATEWAY}|g" /godata/config/cruise-config.xml
 #SET GIT REPO
 sed -i "s|GITREPO|${GITREPO}|g" /godata/config/cruise-config.xml
+sed -i "s|GITBRANCH|${GITBRANCH}|g" /godata/config/cruise-config.xml

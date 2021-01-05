@@ -15,7 +15,8 @@ services:
       - ./DATA/gocd-server/:/godata
       - /var/run/docker.sock:/var/run/docker.sock
     environment:
-      - GITREPO=https://github.com/TheProjectAurora/gocd-katas.git
+      - GITREPO="https://github.com/TheProjectAurora/gocd-katas.git"
+      - GITBRANCH="main"
       # PLUGINS: https://www.gocd.org/plugins/
       - GOCD_PLUGIN_INSTALL_docker-elastic-agents=https://github.com/gocd-contrib/docker-elastic-agents-plugin/releases/download/v3.0.0-245/docker-elastic-agents-3.0.0-245.jar
       - GOCD_PLUGIN_INSTALL_yaml-config-plugin=https://github.com/tomzo/gocd-yaml-config-plugin/releases/download/0.13.0/yaml-config-plugin-0.13.0.jar

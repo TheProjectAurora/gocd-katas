@@ -111,7 +111,7 @@
   <pipelines group="defaultGroup">
     <pipeline name="SmokeTestElasticDocker">
       <materials>
-        <git url="GITREPO" />
+        <git url=GITREPO branch=GITBRANCH />
       </materials>
       <stage name="Smoke">
         <jobs>

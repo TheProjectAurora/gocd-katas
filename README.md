@@ -5,6 +5,7 @@
 Get familiar with https://www.gocd.org/
 
 # Setup
-1. Unix socker privialedges so elastic docker agents could be started: ```chmod 777 /var/run/docker.sock```'
+1. Unix socker privialedges so elastic docker agents could be started: ```chmod 777 /var/run/docker.sock```
+1. System write data to ./DATA folder so it need wide access to there: ```chmod -R 777 ./DATA```
 1. Start:  ```docker-compose up -d ```
 1. http://localhost:8153 should answer
