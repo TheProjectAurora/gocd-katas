@@ -1,7 +1,7 @@
 # simple.gocd.yaml
 pipelines:
-  SubStack-A:
-    group: SubStacks
+  ApplicationStack:
+    group: Application
     materials:
       MaterialFromSubStackA:
         pipeline: SubStack-A
