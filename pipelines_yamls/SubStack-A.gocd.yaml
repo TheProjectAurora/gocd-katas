@@ -14,6 +14,16 @@ pipelines:
         git: https://github.com/TheProjectAurora/helm-data-tool.git
         branch: master
     stages:
+      - Package: # name of stage
+          jobs:
+            Deploy: # name of the job
+              elastic_profile_id: "gocd-agent-alpine"
+              tasks:
+               - exec: # indicates type of task
+                   command: /bin/sh
+                   arguments:
+                    - "-c"
+                    - "echo THIS IS SubStack-A"
       - Deploy: # name of stage
           jobs:
             Deploy: # name of the job
