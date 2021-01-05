@@ -1,0 +1,33 @@
+version: '2'
+services:
+# WHOLE IDEA: https://github.com/EugenMayer/gocd-boilerplate
+  gocd-server:
+    # https://hub.docker.com/r/gocd/gocd-server
+    build:
+      context: ./infra/gocd-server
+      dockerfile: Dockerfile
+    ports:
+      - 8153:8153
+      - 8154:8154
+    volumes:
+      - ./infra/gocd-server/config/cruise-config.xml:/tmp/cruise-config.xml
+      - ./infra/gocd-server/config/gocd_initialise.sh:/docker-entrypoint.d/gocd_initialise.sh
+      - ./DATA/gocd-server/:/godata
+      - /var/run/docker.sock:/var/run/docker.sock
+    environment:
+      - GITREPO=https://github.com/TheProjectAurora/helm-data-tool.git
+      # PLUGINS: https://www.gocd.org/plugins/
+      - GOCD_PLUGIN_INSTALL_docker-elastic-agents=https://github.com/gocd-contrib/docker-elastic-agents-plugin/releases/download/v3.0.0-245/docker-elastic-agents-3.0.0-245.jar
+      - GOCD_PLUGIN_INSTALL_yaml-config-plugin=https://github.com/tomzo/gocd-yaml-config-plugin/releases/download/0.13.0/yaml-config-plugin-0.13.0.jar
+
+# FINE TUNED VERSION:
+#  gogs:
+#    # https://github.com/gogs/gogs/tree/master/docker
+#    build:
+#      context: ./infra/gogs
+#      dockerfile: Dockerfile
+#    ports:
+#      - '3000:3000'
+#      - '22:22'
+#    volumes:
+#      - ./DATA/gogs:/data

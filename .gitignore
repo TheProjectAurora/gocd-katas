@@ -1,0 +1,4 @@
+DATA/gocd-server/*
+!DATA/gocd-server/emptyfile
+DATA/gogs/*
+!DATA/gogs/emptyfile

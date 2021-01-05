@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="utf-8"?>
+<cruise xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="cruise-config.xsd" schemaVersion="138">
+  <server agentAutoRegisterKey="8d1dee43-813f-46c7-aed2-c293934b3b1c" webhookSecret="04b767f8-ec3d-4159-950e-03beeb806c2c" commandRepositoryLocation="default" serverId="c785023c-2f25-4373-babc-226b1aa8e35a" tokenGenerationKey="d772af0b-6e99-445d-923a-9587361de83b">
+    <backup emailOnSuccess="true" emailOnFailure="true" />
+    <artifacts>
+      <artifactsDir>artifacts</artifactsDir>
+    </artifacts>
+  </server>
+  <elastic>
+    <agentProfiles>
+      <agentProfile id="gocd-agent-alpine" clusterProfileId="local_docker_engine">
+        <property>
+          <key>Hosts</key>
+          <value />
+        </property>
+        <property>
+          <key>Mounts</key>
+          <value />
+        </property>
+        <property>
+          <key>Command</key>
+          <value />
+        </property>
+        <property>
+          <key>Privileged</key>
+          <value />
+        </property>
+        <property>
+          <key>ReservedMemory</key>
+          <value />
+        </property>
+        <property>
+          <key>Environment</key>
+          <value />
+        </property>
+        <property>
+          <key>Cpus</key>
+          <value />
+        </property>
+        <property>
+          <key>Image</key>
+          <value>gocd/gocd-agent-alpine-3.12:v20.10.0</value>
+        </property>
+        <property>
+          <key>MaxMemory</key>
+          <value />
+        </property>
+      </agentProfile>
+    </agentProfiles>
+    <clusterProfiles>
+      <clusterProfile id="local_docker_engine" pluginId="cd.go.contrib.elastic-agent.docker">
+        <property>
+          <key>go_server_url</key>
+          <value>http://GOCD_SERVER_ADDRESS:8153/go</value>
+        </property>
+        <property>
+          <key>environment_variables</key>
+          <value />
+        </property>
+        <property>
+          <key>max_docker_containers</key>
+          <value>5</value>
+        </property>
+        <property>
+          <key>docker_uri</key>
+          <value>unix:///var/run/docker.sock</value>
+        </property>
+        <property>
+          <key>auto_register_timeout</key>
+          <value>5</value>
+        </property>
+        <property>
+          <key>docker_ca_cert</key>
+          <value />
+        </property>
+        <property>
+          <key>docker_client_cert</key>
+          <value />
+        </property>
+        <property>
+          <key>docker_client_key</key>
+          <value />
+        </property>
+        <property>
+          <key>private_registry_server</key>
+          <value />
+        </property>
+        <property>
+          <key>private_registry_username</key>
+          <value />
+        </property>
+        <property>
+          <key>private_registry_password</key>
+          <encryptedValue />
+        </property>
+        <property>
+          <key>enable_private_registry_authentication</key>
+          <value>false</value>
+        </property>
+        <property>
+          <key>private_registry_custom_credentials</key>
+          <value>true</value>
+        </property>
+        <property>
+          <key>pull_on_container_create</key>
+          <value>false</value>
+        </property>
+      </clusterProfile>
+    </clusterProfiles>
+  </elastic>
+  <pipelines group="defaultGroup">
+    <pipeline name="SmokeTestElasticDocker">
+      <materials>
+        <git url="GITREPO" />
+      </materials>
+      <stage name="Smoke">
+        <jobs>
+          <job name="JustCommandInContainer" elasticProfileId="gocd-agent-alpine">
+            <tasks>
+              <exec command="/bin/sh">
+                <arg>-c</arg>
+                <arg>ls</arg>
+                <arg>env</arg>
+              </exec>
+            </tasks>
+          </job>
+        </jobs>
+      </stage>
+    </pipeline>
+  </pipelines>
+</cruise>
