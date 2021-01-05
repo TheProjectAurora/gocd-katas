@@ -108,7 +108,15 @@
       </clusterProfile>
     </clusterProfiles>
   </elastic>
-  <pipelines group="defaultGroup">
+  <config-repos>
+    <config-repo id="Pipelines" pluginId="yaml.config.plugin">
+      <git url=GITREPO branch=GITBRANCH />
+      <rules>
+        <allow action="refer" type="pipeline_group">*</allow>
+      </rules>
+    </config-repo>
+  </config-repos>
+  <pipelines group="SystemSmoke">
     <pipeline name="SmokeTestElasticDocker">
       <materials>
         <git url=GITREPO branch=GITBRANCH />
