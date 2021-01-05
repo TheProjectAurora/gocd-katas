@@ -9,6 +9,10 @@ pipelines:
       MaterialFromComponentB:
         pipeline: Component-B
         stage: StageName
+      JustStupidExample:  # this is the name of material
+        # says about type of material and url at once
+        git: https://github.com/TheProjectAurora/helm-data-tool.git
+        branch: main
     stages:
       - PackageSubStack: # name of stage
           jobs:
