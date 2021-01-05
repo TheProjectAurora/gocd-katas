@@ -8,9 +8,9 @@ pipelines:
         git: https://github.com/TheProjectAurora/gocd-katas.git
         branch: feature/pipelines
     stages:
-      - build: # name of stage
+      - StageName: # name of stage
           jobs:
-            build: # name of the job
+            JobName: # name of the job
               elastic_profile_id: "gocd-agent-alpine"
               tasks:
                - exec: # indicates type of task

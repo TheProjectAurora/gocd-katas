@@ -10,11 +10,29 @@ pipelines:
     stages:
       - build: # name of stage
           jobs:
-            build: # name of the job
+            DockerImage: # name of the job
               elastic_profile_id: "gocd-agent-alpine"
               tasks:
                - exec: # indicates type of task
                    command: /bin/sh
                    arguments:
                     - "-c"
-                    - "echo THIS IS Component-A"
+                    - "echo THIS IS Build Image of Component-A"
+            DockerHelmChart: # name of the job
+              elastic_profile_id: "gocd-agent-alpine"
+              tasks:
+               - exec: # indicates type of task
+                   command: /bin/sh
+                   arguments:
+                    - "-c"
+                    - "echo THIS IS Build Helm Chart of Component-A"
+      - test: # name of stage
+          jobs:
+            TestingComponent: # name of the job
+              elastic_profile_id: "gocd-agent-alpine"
+              tasks:
+               - exec: # indicates type of task
+                   command: /bin/sh
+                   arguments:
+                    - "-c"
+                    - "echo THIS IS Test of Component-A"

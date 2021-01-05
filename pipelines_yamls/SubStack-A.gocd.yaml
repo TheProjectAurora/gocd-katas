@@ -5,10 +5,10 @@ pipelines:
     materials:
       MaterialFromComponentA:
         pipeline: Component-A
-        stage: build
+        stage: test
       MaterialFromComponentB:
         pipeline: Component-B
-        stage: build
+        stage: StageName
     stages:
       - PackageSubStack: # name of stage
           jobs:
