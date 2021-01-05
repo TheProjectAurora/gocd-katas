@@ -1,0 +1,46 @@
+# simple.gocd.yaml
+pipelines:
+  SubStack-A:
+    group: SubStacks
+    materials:
+      MaterialFromComponentA:
+        pipeline: Component-A
+        stage: test
+      MaterialFromComponentB:
+        pipeline: Component-B
+        stage: StageName
+      TestingRepository:  # this is the name of material
+        # This is just JustStupidExample how thing could be delivered to pipelines
+        git: https://github.com/TheProjectAurora/helm-data-tool.git
+        branch: master
+    stages:
+      - Package: # name of stage
+          jobs:
+            Deploy: # name of the job
+              elastic_profile_id: "gocd-agent-alpine"
+              tasks:
+               - exec: # indicates type of task
+                   command: /bin/sh
+                   arguments:
+                    - "-c"
+                    - "echo THIS IS SubStack-A"
+      - Deploy: # name of stage
+          jobs:
+            Deploy: # name of the job
+              elastic_profile_id: "gocd-agent-alpine"
+              tasks:
+               - exec: # indicates type of task
+                   command: /bin/sh
+                   arguments:
+                    - "-c"
+                    - "echo THIS IS SubStack-A"
+      - IntegrationTesting: # name of stage
+          jobs:
+            Test: # name of the job
+              elastic_profile_id: "gocd-agent-alpine"
+              tasks:
+               - exec: # indicates type of task
+                   command: /bin/sh
+                   arguments:
+                    - "-c"
+                    - "echo THIS IS SubStack-A"

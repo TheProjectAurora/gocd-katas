@@ -1,0 +1,42 @@
+# simple.gocd.yaml
+pipelines:
+  ApplicationStack:
+    group: Application
+    materials:
+      MaterialFromSubStackA:
+        pipeline: SubStack-A
+        stage: IntegrationTesting
+      MaterialFromComponentC:
+        pipeline: Component-C
+        stage: build
+    stages:
+      - Package: # name of stage
+          jobs:
+            Deploy: # name of the job
+              elastic_profile_id: "gocd-agent-alpine"
+              tasks:
+               - exec: # indicates type of task
+                   command: /bin/sh
+                   arguments:
+                    - "-c"
+                    - "echo THIS IS SubStack-A"
+      - Deploy: # name of stage
+          jobs:
+            Deploy: # name of the job
+              elastic_profile_id: "gocd-agent-alpine"
+              tasks:
+               - exec: # indicates type of task
+                   command: /bin/sh
+                   arguments:
+                    - "-c"
+                    - "echo THIS IS SubStack-A"
+      - IntegrationTesting: # name of stage
+          jobs:
+            Test: # name of the job
+              elastic_profile_id: "gocd-agent-alpine"
+              tasks:
+               - exec: # indicates type of task
+                   command: /bin/sh
+                   arguments:
+                    - "-c"
+                    - "echo THIS IS SubStack-A"

@@ -1,0 +1,20 @@
+# simple.gocd.yaml
+pipelines:
+  Component-B:
+    group: Components
+    materials:
+      mygit:  # this is the name of material
+        # says about type of material and url at once
+        git: https://github.com/TheProjectAurora/gocd-katas.git
+        branch: main
+    stages:
+      - StageName: # name of stage
+          jobs:
+            JobName: # name of the job
+              elastic_profile_id: "gocd-agent-alpine"
+              tasks:
+               - exec: # indicates type of task
+                   command: /bin/sh
+                   arguments:
+                    - "-c"
+                    - "echo THIS IS Component-B"
