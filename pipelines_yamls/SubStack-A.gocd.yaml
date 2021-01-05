@@ -6,9 +6,6 @@ pipelines:
       MaterialFromComponent-A:
         pipeline: Component-A
         stage: build
-      MaterialFromComponent-B:
-        pipeline: Component-B
-        stage: build
     stages:
       - PackageSubStack: # name of stage
           jobs:
