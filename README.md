@@ -22,3 +22,8 @@ This repositry include www.gocd.org demo that setup is as a sandbox.
 1. Remove Data:  ```rm -Rf ./DATA```
 1. Prepare to new round:  ```git checkout ./DATA```
 1. Restart you docker daemon so it turn /var/run/docker.sock privialedges back to normal.
+
+# DEVELOPMENT
+1. Do development by using branch
+1. Change branch to docker-compose.yaml and to all pipeline files in pipelines_yamls folder
+1. When you merge branch to main then remember change branch to main to all of those places
