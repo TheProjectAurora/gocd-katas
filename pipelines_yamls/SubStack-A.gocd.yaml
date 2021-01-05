@@ -3,10 +3,10 @@ pipelines:
   SubStack-A:
     group: SubStacks
     materials:
-      upstream:
+      MaterialFromComponent-A:
         pipeline: Component-A
         stage: build
-      upstream:
+      MaterialFromComponent-B:
         pipeline: Component-B
         stage: build
     stages:
